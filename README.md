@@ -1,5 +1,6 @@
-![YouTube Logo](https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png)
- https://youtu.be/MDZC8VDZnV8?si=Tg0R1fmMhAMp_2Fh  
+<a href="https://youtu.be/MDZC8VDZnV8?si=mZSXTC5_nj_7tAPf">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" width="20" height="20" />
+</a>
 followed this yt tutorial to learn
 
 #learned this concepts
