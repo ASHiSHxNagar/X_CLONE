@@ -1,12 +1,47 @@
-<a href="https://youtu.be/MDZC8VDZnV8?si=mZSXTC5_nj_7tAPf">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" width="20" height="20" />
-</a>
-followed this yt tutorial to learn
+# MERN Stack Project: Build and Deploy a Twitter Clone From Scratch | JWT, Socket.io
 
-#learned this concepts
-* use of chakra ui and tailwind
-* backend and frontend folder and file structure
-* mongodb and mongoose how to make schema and database
-* use of postman to test api
-* connect frontend and backend
-* deployment on render 
+![Demo App](https://i.ibb.co/f8y9vGS/Group-82.png)
+
+[Video Tutorial on Youtube](https://youtu.be/4GUVz2psWUg)
+
+Some Features:
+
+-   ⚛️ Tech Stack: React.js, MongoDB, Node.js, Express, Tailwind
+-   🔐 Authentication with JSONWEBTOKENS (JWT)
+-   🔥 React Query for Data Fetching, Caching etc.
+-   👥 Suggested Users to Follow
+-   ✍️ Creating Posts
+-   🗑️ Deleting Posts
+-   💬 Commenting on Posts
+-   ❤️ Liking Posts
+-   🔒 Delete Posts (if you are the owner)
+-   📝 Edit Profile Info
+-   🖼️ Edit Cover Image and Profile Image
+-   📷 Image Uploads using Cloudinary
+-   🔔 Send Notifications
+-   🌐 Deployment
+-   ⏳ And much more!
+
+### Setup .env file
+
+```js
+MONGO_URI=...
+PORT=...
+JWT_SECRET=...
+NODE_ENV=...
+CLOUDINARY_CLOUD_NAME=...
+CLOUDINARY_API_KEY=...
+CLOUDINARY_API_SECRET=...
+```
+
+### Build the app
+
+```shell
+npm run build
+```
+
+### Start the app
+
+```shell
+npm start
+```
