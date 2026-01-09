@@ -13,7 +13,7 @@ export const signup = async (req, res) => {
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            return res.status(400).json({ error: "invalid emial format" })
+            return res.status(400).json({ error: "Invalid email format" });
         }
 
         const exisitingUser = await User.findOne({ username })
@@ -22,8 +22,12 @@ export const signup = async (req, res) => {
         }
 
         const exisitingEmail = await User.findOne({ email })
-        if (exisitingUser) {
+        if (exisitingEmail) {
             return res.status(400).json({ error: "email is already taken" })
+        }
+
+         if (password.length < 6) {
+            return res.status(400).json({ error: "password must be at least 6 characters long" })
         }
 
         //hash password
@@ -37,9 +41,7 @@ export const signup = async (req, res) => {
             email,
             password: hashedPassword
         })
-        if (password.length < 6) {
-            return res.status(400).json({ error: "password must be at least 6 characters long" })
-        }
+       
         if (newUser) {
             generateTokenAndSetCookie(newUser._id, res)
             await newUser.save()
@@ -49,7 +51,7 @@ export const signup = async (req, res) => {
                 fullName: newUser.fullName,
                 username: newUser.username,
                 followers: newUser.followers,
-                following: newUser.email,
+                following: newUser.following,
                 profileImg: newUser.profileImg,
                 coverImg: newUser.coverImg,
             })

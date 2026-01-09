@@ -3,21 +3,21 @@ import mongoose from "mongoose"
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        reuqired: true,
+        required: true,
         unique: true,
     },
     fullName: {
         type: String,
-        reuqired: true,
+        required: true,
     },
     password: {
         type: String,
-        reuqired: true,
+        required: true,
         minLength: 6,
     },
     email: {
         type: String,
-        reuqired: true,
+        required: true,
         unique: true,
     },
     followers: [

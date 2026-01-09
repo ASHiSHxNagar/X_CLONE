@@ -77,7 +77,7 @@ export const getSuggestedUsers = async (req, res) => {
         suggestedUsers.forEach((user) => (user.password = null))
         res.status(200).json(suggestedUsers)
     } catch (error) {
-        console.log("error in getSuggestedUser:", erro.message)
+        console.log("error in getSuggestedUser:", error.message)
         res.status(500).json({ error: error.message })
     }
 }
@@ -106,24 +106,37 @@ export const updateUser = async (req, res) => {
         }
 
         if (profileImg) {
-
+            // If an existing Cloudinary image is present, attempt to delete it by public_id
             if (user.profileImg) {
-                await cloudinary.uploader.destroy(user.profileImg).split("/").pop().split(".")[0]
+                const match = user.profileImg.match(/\/upload\/(?:v\d+\/)?(.+)\.[a-zA-Z0-9]+$/);
+                const publicId = match ? match[1] : null;
+                if (publicId) {
+                    try {
+                        await cloudinary.uploader.destroy(publicId);
+                    } catch (e) {
+                        console.log("Failed to destroy existing profile image:", e.message);
+                    }
+                }
             }
-            const uplodedResponse = await cloudinary.uploader.upload(profileImg)
-            profileImg = uplodedResponse.secure_url
+            const uploadedResponse = await cloudinary.uploader.upload(profileImg);
+            profileImg = uploadedResponse.secure_url;
         }
 
         if (coverImg) {
-
-
             if (user.coverImg) {
-                await cloudinary.uploader.destroy(user.coverImg).split("/").pop().split(".")[0]
+                const match = user.coverImg.match(/\/upload\/(?:v\d+\/)?(.+)\.[a-zA-Z0-9]+$/);
+                const publicId = match ? match[1] : null;
+                if (publicId) {
+                    try {
+                        await cloudinary.uploader.destroy(publicId);
+                    } catch (e) {
+                        console.log("Failed to destroy existing cover image:", e.message);
+                    }
+                }
             }
 
-            const uplodedResponse = await cloudinary.uploader.upload(coverImg)
-            coverImg = uplodedResponse.secure_url
-
+            const uploadedResponse = await cloudinary.uploader.upload(coverImg);
+            coverImg = uploadedResponse.secure_url;
         }
 
         user.fullName = fullName || user.fullName

@@ -11,7 +11,14 @@ const useFollow = () => {
 					method: "POST",
 				});
 
-				const data = await res.json();
+				let data;
+				const contentType = res.headers.get("content-type") || "";
+				if (contentType.includes("application/json")) {
+					data = await res.json();
+				} else {
+					const text = await res.text();
+					throw new Error("Unexpected response format: " + text.slice(0, 60) + "...");
+				}
 				if (!res.ok) {
 					throw new Error(data.error || "Something went wrong!");
 				}
